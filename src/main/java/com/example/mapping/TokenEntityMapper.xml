@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.TokenEntityMapper">
+  <resultMap id="BaseResultMap" type="com.example.pojo.TokenEntity">
+    <id column="tokenId" jdbcType="INTEGER" property="tokenId" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="buildTime" jdbcType="INTEGER" property="buildTime" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tokenId, userName, buildTime, token
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from general_token
+    where tokenId = #{tokenId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from general_token
+    where userName = #{userName,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from general_token
+    where tokenId = #{tokenId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByName" parameterType="String">
+    delete from general_token
+    where userName = #{userName,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.example.pojo.TokenEntity">
+    insert into general_token (tokenId, userName, buildTime, 
+      token)
+    values (#{tokenId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{buildTime,jdbcType=INTEGER}, 
+      #{token,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.example.pojo.TokenEntity">
+    insert into general_token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tokenId != null">
+        tokenId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="buildTime != null">
+        buildTime,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tokenId != null">
+        #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null">
+        #{buildTime,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.TokenEntity">
+    update general_token
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null">
+        buildTime = #{buildTime,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tokenId = #{tokenId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.TokenEntity">
+    update general_token
+    set userName = #{userName,jdbcType=VARCHAR},
+      buildTime = #{buildTime,jdbcType=INTEGER},
+      token = #{token,jdbcType=VARCHAR}
+    where tokenId = #{tokenId,jdbcType=INTEGER}
+  </update>
+</mapper>

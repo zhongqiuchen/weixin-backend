@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>error page</title>
+</head>
+<body>
+  <p>bad request, forbidden!!!</p>
+  <p th:text="${exception}" />
+  <p th:text="${url}" />
+</body>
+</html>

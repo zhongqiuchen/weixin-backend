@@ -1,0 +1,53 @@
+mybatis:
+   #mapper.xml type
+  typeAliasesPackage: com.example.pojo
+  mapperLocations: com/example/mapping/*.xml
+#  logging:
+#    level:
+#       com.example.demo.dao : debug
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+  
+spring:
+  profiles:
+    active: dev
+    
+    #出现错误时, 直接抛出异常
+  mvc:
+    throw-exception-if-no-handler-found: true
+    #不要为我们工程中的资源文件建立映射
+  resources:
+    add-mappings: false
+    
+
+---
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/micromsg_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  
+ftp:
+  addr: 192.168.200.1
+  port: 21
+  user: test1
+  pwd: test1234
+  
+zhld:
+  RASpublicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANb+z3MAJ5PYj90Zgj4fgRvMPCd326torAKln/N1tf2THdnZ2MLc+LVTCXo42R+9Y5THu2gPnygWepJva3tw9oUCAwEAAQ==
+  RSAprivateKey: MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA1v7PcwAnk9iP3RmCPh+BG8w8J3fbq2isAqWf83W1/ZMd2dnYwtz4tVMJejjZH71jlMe7aA+fKBZ6km9re3D2hQIDAQABAj9o+gJRJMIubo/QZaQysS9ZY1/75YpdJ77VjAmN1uwF4+pdRmQpNl14ujHNs0Yw6M2Obub5dvyF8PMwHXBcDt0CIQD1A9p1mEZnYmKFjVChCIlfvsAK2JRsR3FxOBk6ZRBVewIhAOCiaFX8S8MfjNjasMOTwVbZpHJJGPmO33Wh4jhOtCP/AiEAgZFdGGzDZm6nzRpS9iWOh/xWkCXCL5SEUCwrYy8IuTsCIG/9Z+jeVGMd+pkuRgvrQOtsrAhyGupn6U36/A44ZqS/AiAdb9MA+uRSU5abXATicvrloV95YyEb7xqfd39bOI7f9g==
+  
+---
+#prod
+spring:
+  profiles: prod
+
+
+     
+    
