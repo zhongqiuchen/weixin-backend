@@ -44,6 +44,19 @@ public class DataService implements IDataServcie{
 		}
 	}
 	
+	public List<Record> getSomeRecords(String userName, String toName, int num1, int num2) {
+		// TODO Auto-generated method stub
+		if(userName != null) {
+			String table = "general_chat_" + userName;
+	    	List<Record> records = recordMapper.selectRecordsByNum(table, toName, num1, num2);
+	    	return records;
+		}
+		else {
+			System.out.println("getAllRecords fail, userName = " + userName);
+			return null;
+		}
+	}
+	
 	public boolean addNewRecord(String message, String toName, String name, String chatImg){
     	Date newDate = new Date();
     	int result_1 = 0, result_2 = 0, result_3 = 0;

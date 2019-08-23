@@ -244,11 +244,6 @@ public class SampleController {
     	if(dataService == null) {
 	  		System.out.println("dataService == null ....");
 	  	}
-	  	else {
-//	    	for(Record rec: records) {
-//	    		System.out.println(rec);
-//	    	}
-	  	}
     	
     	if(records != null){
     		System.out.println("getWeixin Success!");
@@ -258,6 +253,34 @@ public class SampleController {
     	}
     	
     	System.out.println("====================== getWeixin over=====================");
+    	return records;
+    }
+    
+    @RequestMapping(value="/select_records",method= RequestMethod.GET)
+    public List<Record> selectRecords(HttpServletRequest request, HttpServletResponse response) {
+    	System.out.println("====================== select_records =====================");
+    	String userName = request.getParameter("userName");
+    	String toName = request.getParameter("toName");
+    	int num1 = Integer.parseInt(request.getParameter("num1"));
+    	int num2 = Integer.parseInt(request.getParameter("num2"));
+    	System.out.println(userName + ", " + toName + ", " + num1 + ", " + num2);
+
+    	List<Record> records = dataService.getSomeRecords(userName, toName, num1, num2);
+    	if(dataService == null) {
+	  		System.out.println("dataService == null ....");
+	  	}
+    	
+    	if(records != null){
+    		System.out.println("getWeixin Success!");
+    		for(Record record : records) {
+    			System.out.println(record.getName() + " -> " + record.getWords());
+    		}	
+    	}
+    	else {
+    		System.out.println("getWeixin Fail...");
+    	}
+    	
+    	System.out.println("====================== select_records over=====================");
     	return records;
     }
     

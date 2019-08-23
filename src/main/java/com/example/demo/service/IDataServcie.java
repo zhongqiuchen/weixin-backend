@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IDataServcie {
 	
 	public List<Record> getAllRecords(String userName);
+	public List<Record> getSomeRecords(String userName, String toName, int num1, int num2);
 	public boolean addNewRecord(String message, String toName, String name, String chatImg);
 
 }

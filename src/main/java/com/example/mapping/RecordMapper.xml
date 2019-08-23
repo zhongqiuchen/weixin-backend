@@ -25,6 +25,15 @@
    from ${value} 
   </select>
   
+  <select id="selectRecordsByNum" parameterType="String" resultMap="BaseResultMap">
+   select 
+   <include refid="Base_Column_List" />
+   from ${value} 
+   where name=#{toname,jdbcType=VARCHAR} or toName=#{toname,jdbcType=VARCHAR}
+   ORDER BY id DESC 
+   limit #{num1,jdbcType=INTEGER}, #{num2,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ${table} 
     where id = #{id,jdbcType=INTEGER}

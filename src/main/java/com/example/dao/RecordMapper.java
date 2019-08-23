@@ -16,6 +16,8 @@ public interface RecordMapper {
     Record selectByPrimaryKey(Integer id);
     
     List<Record> selectAll(@Param("value")String value);
+    
+    List<Record> selectRecordsByNum(@Param("value")String value, String toname, int num1, int num2);
 
     int updateByPrimaryKeySelective(Record record);
 
