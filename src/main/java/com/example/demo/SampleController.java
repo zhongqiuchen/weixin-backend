@@ -55,8 +55,8 @@ public class SampleController {
 	
 	@Resource
 	private ITokenOperationService tokenOperationService;
-	
-	private String localPath = "C:\\Users\\18217\\Desktop\\weixin-0812-token\\";
+	//localPath的值改为前端工程的路径
+	private String localPath = "C:\\Users\\18217\\Desktop\\weiixn-git\\weixin\\";
 	
     @RequestMapping("/")
     String home() {
